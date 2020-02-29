@@ -11,6 +11,22 @@ type acronymTest struct {
 
 var stringTestCases = []acronymTest{
 	{
+		input:	  "Big, Ugly Machine",
+		expected: "BUM",
+	},
+	{
+		input:    "Eine Übung",
+		expected: "EÜ",
+	},
+	{
+		input:    "Society for Soviet/German Friendship",
+		expected: "SFSGF",
+	},
+	{
+		input: 	  "Johnson & Johnson",
+		expected: "JJ",
+	},
+	{
 		input:    "Portable Network Graphics",
 		expected: "PNG",
 	},
