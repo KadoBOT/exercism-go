@@ -4,23 +4,20 @@ import "strings"
 
 func Hey(remark string) string {
 	remark = strings.TrimSpace(remark)
-	if len(remark) == 0 {
-		return "Fine. Be that way!"
-	}
-
 	isQuestion := strings.HasSuffix(remark, "?")
 	isYell := strings.ToUpper(remark) == remark && strings.ToLower(remark) != remark
 	isYellingQuestion := isQuestion && isYell
 
-	if isYellingQuestion {
+	switch {
+	case len(remark) == 0:
+		return "Fine. Be that way!"
+	case isYellingQuestion:
 		return "Calm down, I know what I'm doing!"
-	}
-	if isQuestion {
+	case isQuestion:
 		return "Sure."
-	}
-	if isYell {
+	case isYell:
 		return "Whoa, chill out!"
+	default:
+		return "Whatever."
 	}
-
-	return "Whatever."
 }
