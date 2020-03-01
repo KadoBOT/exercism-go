@@ -4,23 +4,31 @@ import (
 	"strings"
 )
 
-var scores = map[string]int {
-	"AEIOULNRST": 1,
-	"DG": 2,
-	"BCMP": 3,
-	"FHVWY": 4,
-	"K": 5,
-	"JX": 8,
-	"QZ": 10,
+func getValue(s uint8) int {
+	letter := strings.ToUpper(string(s))
+	switch {
+	case strings.Contains("AEIOULNRST", letter):
+		return 1
+	case strings.Contains("DG", letter):
+		return 2
+	case strings.Contains("BCMP", letter):
+		return 3
+	case strings.Contains("FHVWY", letter):
+		return 4
+	case strings.Contains("K", letter):
+		return 5
+	case strings.Contains("JX", letter):
+		return 8
+	case strings.Contains("QZ", letter):
+		return 10
+	default:
+		return 0
+	}
 }
-
 func Score(word string) (result int) {
 	for i := range word {
-		for k, v := range scores {
-			if strings.Contains(k, strings.ToUpper(string(word[i]))) {
-				result += v
-			}
-		}
+		value := getValue(word[i])
+		result += value
 	}
 	return
 }
