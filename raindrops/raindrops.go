@@ -1,8 +1,6 @@
-
 package raindrops
 
 import "strconv"
-
 
 func Convert(num int) (result string)  {
 	if num % 3 == 0 {
