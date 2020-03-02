@@ -1,11 +1,15 @@
 package reverse
 
-import "strings"
+import (
+	"strings"
+)
 
 func Reverse(s string) string {
-	result := make([]string, len(s))
-	for i, v := range s {
-		result[len(s)-i-1] = string(v)
+	var b strings.Builder
+	runes := []rune(s)
+
+	for i := len(s) - 1; i >= 0; i-- {
+		b.WriteRune(runes[i])
 	}
-	return strings.Join(result, "")
+	return b.String()
 }
