@@ -1,38 +1,28 @@
 package luhn
 
-import (
-	"strconv"
-	"strings"
-	"unicode"
-)
-
 func Valid(s string) bool {
-	trimmedStr := strings.TrimSpace(s)
-	if len(trimmedStr) <= 1 {
-		return false
-	}
-
-	out := []rune(trimmedStr)
-	var count int
-	var sum int
-	for i := range out {
-		v := out[len(out)-i-1]
-		if unicode.IsSpace(v) {
+	var count, sum int
+	for i := range s {
+		v := s[len(s)-i-1]
+		if v == ' ' {
 			continue
 		}
 
 		count++
-		num, err := strconv.Atoi(string(v))
-		if err != nil {
-			return false
-		}
-		if count % 2 == 0 {
-			num *= 2
+		if v >= '0' && v <= '9'{
+			num := int(v - '0')
+			if count % 2 == 0 {
+				num *= 2
+			}
 			if num > 9 {
 				num -= 9
 			}
+			sum += num
+			continue
 		}
-		sum += num
+
+		return false
 	}
-	return sum % 10 == 0
+	return count > 1 && sum % 10 == 0
 }
+
