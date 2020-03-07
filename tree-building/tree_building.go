@@ -36,7 +36,8 @@ func Build(records []Record) (*Node, error) {
 		Children: nil,
 	}
 
-	nodes := map[int]*Node{ 0: &node}
+	nodes := make(map[int]*Node, len(records))
+	nodes[0] = &node
 
 	for _, r := range records[1:] {
 		outOfBoundsId := r.ID < 0 || r.ID >= len(records)
