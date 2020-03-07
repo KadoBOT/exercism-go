@@ -14,7 +14,7 @@ type Node struct {
 	Children []*Node
 }
 
-func (n *Node) AddChildren(c *Node) {
+func (n *Node) AddChild(c *Node) {
 	n.Children = append(n.Children, c)
 }
 
@@ -25,7 +25,6 @@ func Build(records []Record) (*Node, error) {
 
 	sort.Slice(records, func(i, j int) bool {
 		return records[i].ID < records[j].ID
-
 	})
 
 	if records[0].Parent != 0 || records[0].ID != 0 {
@@ -52,7 +51,7 @@ func Build(records []Record) (*Node, error) {
 			Children: nil,
 		}
 		nodes[r.ID] = &curNode
-		nodes[r.Parent].AddChildren(&curNode)
+		nodes[r.Parent].AddChild(&curNode)
 	}
 	return &node, nil
 }
