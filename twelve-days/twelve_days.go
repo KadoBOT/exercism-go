@@ -5,10 +5,11 @@ import (
 	"strings"
 )
 
-func Verse(n int) string {
-	days := []string{"first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"}
-	presents := []string{"a Partridge in a Pear Tree", "two Turtle Doves", "three French Hens", "four Calling Birds", "five Gold Rings", "six Geese-a-Laying", "seven Swans-a-Swimming", "eight Maids-a-Milking", "nine Ladies Dancing", "ten Lords-a-Leaping", "eleven Pipers Piping", "twelve Drummers Drumming"}
+var days = []string{"first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"}
+var presents = []string{"a Partridge in a Pear Tree", "two Turtle Doves", "three French Hens", "four Calling Birds", "five Gold Rings", "six Geese-a-Laying", "seven Swans-a-Swimming", "eight Maids-a-Milking", "nine Ladies Dancing", "ten Lords-a-Leaping", "eleven Pipers Piping", "twelve Drummers Drumming"}
+const start = "On the %s day of Christmas my true love gave to me: %s."
 
+func Verse(n int) string {
 	var allPresents []string
 	for i := n - 1; i >= 0; i-- {
 		f := presents[i]
@@ -19,7 +20,7 @@ func Verse(n int) string {
 		allPresents = append(allPresents, f)
 	}
 
-	return fmt.Sprintf("On the %s day of Christmas my true love gave to me: %s.", days[n - 1], strings.Join(allPresents, ", "))
+	return fmt.Sprintf(start, days[n - 1], strings.Join(allPresents, ", "))
 }
 
 func Song() string {
