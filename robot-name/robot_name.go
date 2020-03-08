@@ -23,6 +23,7 @@ func createName() (string, error) {
 		return "", errors.New("max names exhausted")
 	}
 
+	i++
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	name := make([]rune, 5)
 	name[0] = letters[r.Intn(len(letters))]
@@ -33,7 +34,6 @@ func createName() (string, error) {
 	n := string(name)
 
 	if strings.Contains(usedNames, n) {
-		i++
 		return createName()
 	}
 
