@@ -19,24 +19,15 @@ func compareSlices(big, small []int) bool {
 func Sublist(l1, l2 []int) Relation {
 	i1 := len(l1)
 	i2 := len(l2)
-	result := Relation("unequal")
 
 	switch {
-	case i1 < i2:
-		ok := compareSlices(l2, l1)
-		if ok {
-			result = "sublist"
-		}
-	case i1 > i2:
-		ok := compareSlices(l1, l2)
-		if ok {
-			result = "superlist"
-		}
-	case i1 == i2:
-		if reflect.DeepEqual(l1, l2) {
-			result = "equal"
-		}
+	case i1 < i2 && compareSlices(l2, l1):
+		return "sublist"
+	case i1 > i2 && compareSlices(l1, l2):
+		return "superlist"
+	case i1 == i2 && reflect.DeepEqual(l1, l2):
+		return "equal"
 	}
 
-	return result
+	return "unequal"
 }
