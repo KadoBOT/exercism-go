@@ -8,7 +8,7 @@ func Reverse(s string) string {
 	var b strings.Builder
 	runes := []rune(s)
 
-	for i := len(s) - 1; i >= 0; i-- {
+	for i := len(runes) - 1; i >= 0; i-- {
 		b.WriteRune(runes[i])
 	}
 	return b.String()
