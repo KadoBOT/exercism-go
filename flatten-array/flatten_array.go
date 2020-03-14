@@ -1,17 +1,14 @@
 package flatten
 
 func recFlatten(input interface{}, c chan interface{}, main bool) {
-	switch t := input.(type) {
-	case []interface{}:
-		for _, item := range t {
-			switch item.(type) {
-			case []interface{}:
-				recFlatten(item, c, false)
-			case int:
-				c <- item
-			default:
-				continue
-			}
+	for _, item := range input.([]interface{}) {
+		switch item.(type) {
+		case []interface{}:
+			recFlatten(item, c, false)
+		case nil:
+			continue
+		default:
+			c <- item
 		}
 	}
 
