@@ -21,7 +21,7 @@ func KindFromSides(a, b, c float64) Kind {
 		return NaT
 	}
 	switch {
-	case a == b && a == c && b == c:
+	case a == b && a == c:
 		return Equ
 	case a == b || b == c || a == c:
 		return Iso
