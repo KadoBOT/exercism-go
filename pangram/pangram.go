@@ -4,8 +4,8 @@ import "strings"
 
 func IsPangram(input string) bool {
 	lowerCaseInput := strings.ToLower(input)
-	for i := 1; i <= 26; i++ {
-		if !strings.Contains(lowerCaseInput, string('a'-1+i)) {
+	for i := 'a'; i <= 'z'; i++ {
+		if !strings.ContainsRune(lowerCaseInput, i) {
 			return false
 		}
 	}
