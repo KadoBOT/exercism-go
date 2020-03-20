@@ -6,8 +6,6 @@ import (
 	"strings"
 )
 
-type Line string
-
 func Encode(input string) string {
 	reg, _ := regexp.Compile("[^-a-zA-Z0-9]+")
 	str := reg.ReplaceAllString(strings.ToLower(input), "")
