@@ -14,7 +14,7 @@ func LargestSeriesProduct(digits string, series int) (int, error) {
 	}
 
 	var result int
-	for i := 0; i < len(digits)-series+1; i++ {
+	for i := 0; i <= len(digits)-series; i++ {
 		digitSlice := digits[i : i+series]
 		if digitSlice[0] < '0' || digitSlice[0] > '9' {
 			return 0, fmt.Errorf("digits contain non digit")
