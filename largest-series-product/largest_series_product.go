@@ -2,7 +2,6 @@ package lsproduct
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func LargestSeriesProduct(digits string, series int) (int, error) {
@@ -17,17 +16,16 @@ func LargestSeriesProduct(digits string, series int) (int, error) {
 	var result int
 	for i := 0; i < len(digits)-series+1; i++ {
 		digitSlice := digits[i : i+series]
-		temp, err := strconv.Atoi(string(digitSlice[0]))
-
-		if err != nil {
-			return 0, err
+		if digitSlice[0] < '0' || digitSlice[0] > '9' {
+			return 0, fmt.Errorf("digits contain non digit")
 		}
+		temp := int(digitSlice[0] - '0')
+
 		for _, v := range digitSlice[1:] {
-			n, err := strconv.Atoi(string(v))
-			if err != nil {
-				return 0, err
+			if v < '0' || v > '9' {
+				return 0, fmt.Errorf("digits contain non digit")
 			}
-			temp *= n
+			temp *= int(v - '0')
 		}
 		if temp > result {
 			result = temp
