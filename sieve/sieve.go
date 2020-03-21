@@ -1,26 +1,24 @@
 package sieve
 
-import "math"
-
-func Sieve(limit int) (result []int) {
+func Sieve(limit int) []int {
 	switch limit {
 	case 1:
-		result = []int{}
+		return []int{}
 	default:
-		nonPrime := map[int]bool{}
+		result := []int{}
+		nonPrime := make([]bool, limit+1)
 
 		for i := 2; i <= limit; i++ {
-			ok, _ := nonPrime[i]
+			ok := nonPrime[i]
 			if !ok {
 				result = append(result, i)
 				k := 0
-				j := int(math.Pow(float64(i), 2))
-				for l := j; l <= limit; l = j + (k * i) {
+				for l := i * i; l <= limit; l = (i * i) + (k * i) {
 					nonPrime[l] = true
 					k++
 				}
 			}
 		}
+		return result
 	}
-	return
 }
